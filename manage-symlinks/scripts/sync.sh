@@ -3,16 +3,18 @@
 # sync.sh — link every skill in this repo into a skills search path.
 #
 # Source of truth: this repo (work-skills). Each top-level directory that
-# contains a SKILL.md is symlinked into the target skills directory
-# (default: ~/.claude/skills) as <target>/<name> -> <repo>/<name>.
+# contains a SKILL.md is symlinked into the Claude Code skills directory
+# (~/.claude/skills) as <target>/<name> -> <repo>/<name>.
+#
+# Scope: ~/.claude/skills ONLY. This skill deliberately does not touch
+# ~/.agents/skills, ~/.codex/skills, or any other search path.
 #
 # Safe by default: never clobbers a real directory/file that isn't ours —
 # it warns and skips unless --force is given (which moves the conflict aside).
 #
 # Usage:
-#   sync.sh [--target DIR] [--dry-run] [--force] [--prune]
+#   sync.sh [--dry-run] [--force] [--prune]
 #
-#   --target DIR   Skills dir to link into (default: ~/.claude/skills)
 #   --dry-run      Show what would change; make no changes
 #   --force        Move an aside a conflicting real path, then link
 #   --prune        Remove stale symlinks in target that point into this repo
@@ -21,7 +23,7 @@
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-TARGET="${HOME}/.claude/skills"
+TARGET="${HOME}/.claude/skills"   # fixed: Claude Code skills path only
 DRY_RUN=0; FORCE=0; PRUNE=0
 
 # Directories in the repo that are NOT active skills (templates, scaffolds).
@@ -29,7 +31,6 @@ EXCLUDE=( "write-guide.example" )
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    --target) TARGET="$2"; shift 2 ;;
     --dry-run) DRY_RUN=1; shift ;;
     --force) FORCE=1; shift ;;
     --prune) PRUNE=1; shift ;;

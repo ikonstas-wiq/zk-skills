@@ -6,9 +6,12 @@ description: Link the skills in this repo (work-skills) into a Claude Code skill
 # Manage work-skills symlinks
 
 `work-skills` is the source of truth for the author's work skills. For Claude
-Code to see them, each skill directory must appear in a skills search path
-(default `~/.claude/skills`) as a symlink back to this repo. This skill keeps
-those symlinks in sync.
+Code to see them, each skill directory must appear in `~/.claude/skills` as a
+symlink back to this repo. This skill keeps those symlinks in sync.
+
+**Scope: `~/.claude/skills` only.** It deliberately does not touch
+`~/.agents/skills`, `~/.codex/skills`, or any other search path — those are
+managed elsewhere (e.g. the personal `zk-skills` repo).
 
 One skill per top-level directory that contains a `SKILL.md`. Templates and
 scaffolds (e.g. `write-guide.example`) are excluded — see `EXCLUDE` in the
@@ -28,7 +31,6 @@ bash scripts/sync.sh              # link everything into ~/.claude/skills
 bash scripts/sync.sh --dry-run    # preview; make no changes
 bash scripts/sync.sh --prune      # also remove stale links whose skill was deleted
 bash scripts/sync.sh --force      # replace a conflicting real dir (moved aside to Temp)
-bash scripts/sync.sh --target ~/.agents/skills   # link into a different search path
 ```
 
 ## Behaviour and safety
