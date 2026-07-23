@@ -10,3 +10,7 @@ Thumbs.db
 
 # Node
 node_modules/
+
+# Personal, interchangeable voice profile — swap in your own; never commit.
+# The committed template lives in write-guide.example/
+/write-guide/
