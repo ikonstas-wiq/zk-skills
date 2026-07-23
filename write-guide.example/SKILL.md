@@ -60,9 +60,9 @@ Fill in the sections below. Keep the headings; they are what downstream skills e
 1. Read the brief: audience, message, desired outcome.
 2. Apply every style rule above on every use.
 3. Read `references/AUDIENCE.md` when the audience affects framing, the output is external/shareable, third parties are named, or the source includes meetings/transcripts.
-4. Load `remove-ai-tells` (`../remove-ai-tells/SKILL.md`) — the canonical AI-tells catalogue.
-5. Draft in the author's voice.
-6. Apply audience rules when loaded.
-7. Run the `remove-ai-tells` De-Slop Pass: sweep, fix minimally, loop until clean. The anti-patterns above are author-specific; the general AI fingerprints come from `remove-ai-tells`.
-8. Present for review — do NOT send automatically.
-9. Adjust on feedback, then deliver.
+4. Draft in the author's voice.
+5. Apply audience rules when loaded.
+6. Present for review — do NOT send automatically.
+7. Adjust on feedback, then deliver.
+
+This skill owns voice only. Removing AI tells is a separate concern handled by the `remove-ai-tells` skill, which surfaces on its own for prose tasks — this skill does not invoke it.

@@ -100,15 +100,18 @@ The source markdown is the author's draft. Preserve its *meaning and phrasing*, 
 
 ## Tone Gate (apply to the source markdown before converting)
 
-This skill renders whatever prose it is given, so slop in the source ends up in a shareable artefact. **Load the `remove-ai-tells` skill** (`../remove-ai-tells/SKILL.md`) — it is the canonical catalogue of AI writing tells (meta-tails, buzzwords, fill words, negated contrasts, em-dash density, bow sentences, the lot) and defines the De-Slop Pass: sweep, fix minimally, loop until a pass finds nothing new, delete-test the residue.
+This skill renders whatever prose it is given, so slop in the source ends up in a shareable artefact. **Load both writing skills as upfront context before the first content pass — not as a final lint.** They are independent siblings; neither invokes the other, so this skill loads each explicitly:
 
-Run that pass on the source markdown before converting. Skill-specific calibration:
+- **`remove-ai-tells`** (`../remove-ai-tells/SKILL.md`) — *always*. The canonical catalogue of AI writing tells (meta-tails, buzzwords, fill words, negated contrasts, em-dash density, bow sentences, the lot); it defines the De-Slop Pass: sweep, fix minimally, loop until a pass finds nothing new, delete-test the residue.
+- **`write-guide`** (`../write-guide/SKILL.md`) — *optional*, the voice layer. Load it when the intake calls for an authored voice (details under the Voice-treatment bullet below).
+
+Run the De-Slop Pass on the source markdown before converting. Skill-specific calibration:
 
 - For the default **fact-based / minimal-sell** register, apply the full catalogue; for an explicitly persuasive register, the tonal rules soften but the hard bans (emoji, meta-tails, fabrication, and the near-zero exclamation default) still hold.
 - **Dense-deck exception** (also stated in remove-ai-tells guardrails): bold subheadings inside dense sections are structure, not emphasis crutches — keep the typographic hierarchy.
 - **Voice treatment (optional).** This skill looks for a sibling `write-guide` skill (`../write-guide/SKILL.md`) — an interchangeable, user-supplied voice profile (gitignored; swap in your own, or run with none). If it exists *and* the intake calls for an authored voice (personal essays, external comms), load it and its `references/AUDIENCE.md` and apply it to the source markdown *before* converting. If it is absent, skip voice treatment and rely on `remove-ai-tells` alone. Do not blanket-apply a personal voice to dense factual decks — take only its voice guidance; the tells catalogue always comes from `remove-ai-tells`.
 
-**Second loop — the microcopy this skill writes itself.** The pass above cleans the *source* prose. But this skill authors new text that was never in the source and never went through the gate: taglines, section summaries, accordion titles, tab labels, callout labels, and connective phrasing. That generated microcopy is exactly where fresh tells reappear — catchy section labels, "TWO OUTCOMES"-style taxonomy, bow-tie taglines, meta-tails. Run the De-Slop Pass once more on the rendered prose before delivery, focused on the copy you wrote rather than the copy you carried over.
+**Second `remove-ai-tells` loop — the microcopy this skill writes itself.** The pass above cleans the *source* prose. But this skill authors new text that was never in the source and never went through the gate: taglines, section summaries, accordion titles, tab labels, callout labels, and connective phrasing. That generated microcopy is exactly where fresh tells reappear — catchy section labels, "TWO OUTCOMES"-style taxonomy, bow-tie taglines, meta-tails. Run the De-Slop Pass once more on the rendered prose before delivery, focused on the copy you wrote rather than the copy you carried over.
 
 ## Process
 
