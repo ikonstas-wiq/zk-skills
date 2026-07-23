@@ -1,0 +1,4 @@
+interface:
+  display_name: "Clean Up Merged PR"
+  short_description: "Finish post-merge branches, issues, and docs"
+  default_prompt: "Use $cleanup-pr to finish the post-merge cleanup for this pull request."

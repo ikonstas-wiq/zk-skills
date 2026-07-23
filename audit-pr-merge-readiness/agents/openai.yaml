@@ -1,0 +1,4 @@
+interface:
+  display_name: "Audit PR Merge Readiness"
+  short_description: "Evidence-backed review for large and stacked PRs"
+  default_prompt: "Use $audit-pr-merge-readiness to audit this PR or PR stack for merge readiness."

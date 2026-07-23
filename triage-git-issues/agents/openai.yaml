@@ -1,0 +1,4 @@
+interface:
+  display_name: "Triage GitHub Issues"
+  short_description: "Rank issue readiness, sequence, and effort"
+  default_prompt: "Use $triage-git-issues to scan this repository’s open issues and return a prioritized triage table."

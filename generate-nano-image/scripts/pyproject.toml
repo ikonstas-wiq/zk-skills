@@ -1,0 +1,15 @@
+[project]
+name = "generate-nano-image"
+version = "0.1.0"
+description = "Nano Banana Pro (Gemini 3 Pro Image) generation + edit + deterministic text-patch tooling"
+requires-python = ">=3.10"
+dependencies = [
+    "google-genai>=1.21.0",
+    "pillow>=10.4.0",
+    "numpy>=1.26.0",
+]
+
+# NB: ships a committed uv.lock. `uv run` installs from the lock and never queries
+# the dev container's JFrog extra index (which 401s). Only a fresh re-resolve hits
+# JFrog — if you change deps, regenerate with the broken index suppressed:
+#   UV_EXTRA_INDEX_URL= uv lock
