@@ -1,0 +1,58 @@
+{
+  "_template_notice": "TEMPLATE — copy this file to `metadata_map.json` (same directory) and fill it with your own Slack conversation IDs. The real `metadata_map.json` is gitignored so personal names and channel IDs never ship in the repo. Keep the structure below; the slack skill reads these keys.",
+  "metadata": {
+    "created_date": "YYYY-MM-DD",
+    "last_updated": "YYYY-MM-DD",
+    "last_verified": "YYYY-MM-DD",
+    "discovery_method": "Slack MCP search with keyword and channel_types queries",
+    "scope": "All private channels, group DMs, and 1:1 DMs visible in <your> Slack sidebar",
+    "user_id": "U0XXXXXXXXX"
+  },
+  "channels": {
+    "<category_a>": [
+      {
+        "name": "example-channel-name",
+        "channel_id": "C0XXXXXXXXX",
+        "type": "private_channel",
+        "topic": "What this channel is for"
+      },
+      {
+        "name": "another-public-channel",
+        "channel_id": "C0XXXXXXXXX",
+        "type": "public_channel",
+        "topic": "Short description"
+      }
+    ],
+    "<category_b>": [
+      {
+        "name": "example-channel",
+        "channel_id": "C0XXXXXXXXX",
+        "type": "private_channel",
+        "topic": "Short description",
+        "notes": "Optional free-text note, e.g. former name or context"
+      }
+    ]
+  },
+  "group_dms": [
+    {
+      "participants": ["Person One", "Person Two", "<You>"],
+      "channel_id": "C0XXXXXXXXX",
+      "purpose": "What this group DM is for"
+    }
+  ],
+  "direct_messages": [
+    {
+      "person": "Person One",
+      "dm_id": "D0XXXXXXXXX",
+      "role": "Their role / how you relate to them"
+    }
+  ],
+  "special_notes": {
+    "example_note": "Free-text notes about edge cases — name changes, channel renames, bots that look like people, DM-vs-group ambiguity, etc."
+  },
+  "quick_reference": {
+    "all_channel_ids": ["C0XXXXXXXXX"],
+    "all_group_dm_ids": ["C0XXXXXXXXX"],
+    "all_dm_ids": ["D0XXXXXXXXX"]
+  }
+}

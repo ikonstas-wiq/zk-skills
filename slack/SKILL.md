@@ -51,14 +51,16 @@ retries"*, not *"Slack CLI/token not available"* (which is never the real cause)
 
 Before searching by name, check `references/metadata_map.json` in this skill's directory. It maps conversation names, people, and group DMs to channel IDs.
 
+> **Setup:** `metadata_map.json` is personal and **gitignored** so names and channel IDs never ship in the repo. Copy the committed `references/metadata_map.example.json` to `references/metadata_map.json` and fill it with your own conversations. If the file is absent, skip straight to search-based discovery (step 2 below).
+
 **Resolution order:**
 1. Read `metadata_map.json` — match on person name, channel name, or participant list
 2. If no match, use `slack_search_channels` or `slack_search_users` to discover the ID
 3. Once found, use `slack_read_channel` with the ID directly (far cheaper than searching)
 
 **Examples:**
-- "Check my DMs with Amy" → lookup "Amy Humburg" → `slack_read_channel(channel_id="D0675GQLH1C")`
-- "Read the leadership trio" → match "Core platform/engineering leadership trio" → `slack_read_channel(channel_id="C02FARX9W0N")`
+- "Check my DMs with <person>" → lookup their name in `direct_messages` → `slack_read_channel(channel_id="D0XXXXXXXXX")`
+- "Read the <group> channel" → match on channel name or group-DM purpose → `slack_read_channel(channel_id="C0XXXXXXXXX")`
 - "What's happening in ai-cos" → match "ai-cos" → `slack_read_channel(channel_id="C0AQUE4NLLF")`
 
 **Group DM matching:**
