@@ -1,5 +1,19 @@
 {
   "_template_notice": "TEMPLATE — copy this file to `metadata_map.json` (same directory) and fill it with your own Slack conversation IDs. The real `metadata_map.json` is gitignored so personal names and channel IDs never ship in the repo. Keep the structure below; the slack skill reads these keys.",
+  "_how_to_populate": {
+    "audience": "An Agent building the real metadata_map.json from a user's live Slack. This records how the committed real map was produced so it can be regenerated on a new machine.",
+    "steps": [
+      "1. Load the Slack MCP tool schemas first — they are deferred: ToolSearch(\"select:mcp__claude_ai_Slack__slack_search_public_and_private,mcp__claude_ai_Slack__slack_read_channel,mcp__claude_ai_Slack__slack_search_users,mcp__claude_ai_Slack__slack_search_channels\"). A sub-agent must do this itself; schemas do not inherit from the parent.",
+      "2. CRITICAL channel_types gotcha: every search MUST pass channel_types=\"public_channel,private_channel,mpim,im\". The default is public-only and hides 80%+ of conversations (all DMs, group DMs, private channels).",
+      "3. Enumerate what the user actually participates in: slack_search_public_and_private(query=\"from:me after:<~90 days ago>\", channel_types=\"public_channel,private_channel,mpim,im\", response_format=\"detailed\"). Use detailed format — it returns the channel_id — and page a few times to cover the tail.",
+      "4. Resolve names to IDs as needed: slack_search_channels(query=\"channel-name\") for channels; slack_search_users(query=\"Person Name\") for DM partners. Get your own user_id via slack_search_users(query=\"me\").",
+      "5. Classify each hit into the sections below: public/private channels -> channels{} grouped under a sensible category, with name, channel_id, type, topic; group DMs (mpim) -> group_dms[] with participants, channel_id, purpose; 1:1 DMs (im) -> direct_messages[] with person, dm_id, role.",
+      "6. Watch for bots that look like people (calendar/notification bots) — do not map them as people; record the ambiguity in special_notes instead. Also note renames and name changes there.",
+      "7. Rebuild the quick_reference id arrays from the entries above so they stay in sync.",
+      "8. Set metadata.created_date / last_updated / last_verified (Australia/Brisbane date) and metadata.user_id.",
+      "9. Save as metadata_map.json in this directory — the gitignored real file. NEVER commit it; only this .example.json is tracked."
+    ]
+  },
   "metadata": {
     "created_date": "YYYY-MM-DD",
     "last_updated": "YYYY-MM-DD",

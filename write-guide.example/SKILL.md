@@ -5,6 +5,24 @@ description: TEMPLATE — draft or rewrite professional communications in the au
 
 # Write As <You>
 
+<!--
+HOW WE POPULATED THIS (for an Agent calibrating the real write-guide/ profile).
+This records the method used to fill the committed real profile so it can be rebuilt for a new author.
+
+1. Assemble a corpus of the author's OWN writing — prefer things they wrote unedited and sent themselves:
+   sent Gmail/Outlook (gws/msgraph), their Slack messages ("from:me"), authored docs and PR descriptions.
+   Skip co-authored, templated, or forwarded content — it is not their voice.
+2. Confirm identity, pronouns, and the audiences they write to WITH the author — never infer from a name.
+3. Fill each heading from OBSERVED patterns, not aspirations: derive formality/warmth/authority from tone;
+   set punctuation rules by counting real habits (e.g. em-dash frequency, exclamation marks ~ zero,
+   Australian-casual markers like "keen"/"across it"/"flag"); build the anti-patterns list from tics
+   they consistently avoid.
+4. Where the corpus is thin or a signal is ambiguous, ASK the author rather than guessing — voice errors
+   are immediately obvious to them and cheap to correct up front.
+5. Replace every <…> placeholder, delete this comment and the "activate it" bullet block below, keep the
+   headings (downstream skills expect them), and save to ../write-guide/ (gitignored — never commit).
+-->
+
 This is the **template** for the interchangeable personal voice profile.
 
 - The real, personal version lives in a sibling `write-guide/` directory, which is **gitignored** so voice data and audience rules never ship in the repo.
