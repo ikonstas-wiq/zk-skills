@@ -179,6 +179,7 @@ scrolls horizontally; content within `--container` (or `--container-wide` for da
 ## Consumers
 
 - **mds-to-html** loads this and selects a scheme from its intake.
-- **q-html** / **wiq-html** are deprecated thin pointers to this guide (the two Detailed
-  presets). Prefer design-guide directly.
+- **q-html** / **wiq-html** have been removed — they are the `quantium-detailed` and
+  `wiq-detailed` schemes here. (Originals kept at `/workspace/Temp/legacy-skills/` and in
+  git history.)
 - **distil-workshop** and future prototypes reference these tokens.
