@@ -1,0 +1,40 @@
+/* design-guide · assets/palette-wiq.css
+   Tier 2 — wiq brand palette. Sets the accent + status colour roles that
+   components consume. Surface / ink / radius / shadow are set by the IMPLEMENTATION.
+   Design DNA: Berry purple accent against warm neutrals — professional, never decorative. */
+
+:root {
+  /* Brand hue ramp */
+  --brand: #913199;             /* wiq Berry */
+  --brand-strong: #78287f;
+  --berry-50: #c898cc;          /* mid-tone — taglines, secondary */
+  --berry-20: #ead8ec;          /* selected states, highlights */
+  --berry-10: #f9f4f9;          /* tinted backgrounds */
+  --charcoal: #3a474e;          /* all body text base */
+  --ultramarine: #250e90;       /* deep accent, gradient start */
+  --ocean-blue: #66c5ff;        /* light blue accent */
+  --alice-blue: #ecf4ff;        /* very light blue info bg */
+
+  /* Semantic accent roles */
+  --accent: var(--brand);
+  --accent-hover: var(--brand-strong);
+  --accent-tint: var(--berry-10);
+  --on-accent: #ffffff;
+  --link: var(--brand);
+  --focus-ring: rgba(145, 49, 153, 0.40);
+
+  /* Brand heading colour (used by Detailed; Exec uses --ink) */
+  --brand-heading: var(--charcoal);
+
+  /* Status roles (shared RAG mapping) */
+  --info: #3a5a8a;    --info-bg: var(--alice-blue); --info-fg: #3a5a8a;
+  --success: #2a7a55; --success-bg: #e8f5f0;        --success-fg: #2a6b55;
+  --warning: #8a6a2a; --warning-bg: #f5f0e0;        --warning-fg: #6b5a2a;
+  --danger: #8a2a2a;  --danger-bg: #f5e8e8;         --danger-fg: #8a2a2a;
+
+  /* Table header (wiq default: Berry bg, white text, Berry-10 row striping).
+     Exec overrides these. */
+  --table-head-bg: var(--brand);
+  --table-head-fg: #ffffff;
+  --table-row-alt: var(--berry-10);
+}

@@ -1,0 +1,100 @@
+<nav class="top-nav">
+  <span class="top-nav-title">design-guide demo</span>
+  <button class="top-nav-tab active" onclick="showPage('overview', this)">Overview</button>
+  <button class="top-nav-tab" onclick="showPage('detail', this)">Detail</button>
+  <button class="top-nav-tab" onclick="showPage('actions', this)">Actions</button>
+  <span class="top-nav-date">24 Jul 2026</span>
+</nav>
+
+<div id="page-overview" class="page active">
+  <div class="container">
+    <h1>Scheme showcase</h1>
+    <p class="tagline">One markup, four schemes. This page exercises every component in the design-guide vocabulary so the two implementations can be compared side by side.</p>
+
+    <div class="callout-bar">
+      <span class="callout-label">North star</span>
+      <span class="callout-text">Tokens are the asset; Detailed and Exec are incarnations of the same asset.</span>
+    </div>
+
+    <div class="stats-row">
+      <div><div class="stat-number">4</div><div class="stat-label">Schemes</div></div>
+      <div><div class="stat-number">2</div><div class="stat-label">Brands</div></div>
+      <div><div class="stat-number">2</div><div class="stat-label">Registers</div></div>
+      <div><div class="stat-number">1</div><div class="stat-label">Token core</div></div>
+    </div>
+
+    <div class="master-section open" style="max-height:none;">
+      <div class="master-header" onclick="toggleMaster(this)">
+        <span class="master-color-bar" style="background: var(--q-blue);"></span>
+        <div class="master-heading-text">
+          <span class="master-title">Components at a glance</span>
+          <span class="master-subhead">cards, tables, tags</span>
+        </div>
+        <svg class="master-chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"/></svg>
+      </div>
+      <div class="master-body" style="max-height:none;">
+        <div class="master-body-inner">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+            <div class="card"><div class="card-title">Card one</div><div class="card-desc">A compact card with a title and a light description line.</div></div>
+            <div class="card"><div class="card-title">Card two</div><div class="card-desc">Cards share one radius and padding token, so neighbours never disagree.</div></div>
+          </div>
+          <div style="margin-bottom:12px;">
+            <span class="tag tag-blue">blue</span> <span class="tag tag-cyan">cyan</span>
+            <span class="tag tag-green">green</span> <span class="tag tag-orange">orange</span>
+            <span class="tag tag-coral">coral</span> <span class="tag tag-violet">violet</span>
+          </div>
+          <table class="doc-table">
+            <thead><tr><th>Token family</th><th>Example</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>Space</td><td>--space-3</td><td>Card padding, item gaps</td></tr>
+              <tr><td>Radius</td><td>--radius-card</td><td>Card corners</td></tr>
+              <tr><td>Type</td><td>--text-title</td><td>Section &amp; card titles</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="page-detail" class="page">
+  <div class="container">
+    <h2>Detail components</h2>
+    <table class="info-table">
+      <tr><td>Brand</td><td>Palette asset — Q Blue or Berry</td></tr>
+      <tr><td>Register</td><td>Implementation — Detailed or Exec</td></tr>
+      <tr><td>Scheme</td><td>Brand × register</td></tr>
+    </table>
+
+    <div class="quote">The type scale, spacing, radius, elevation and motion are all variables — consistency is enforced by referencing the token, never by re-typing a value.</div>
+
+    <div class="tip-card">Tip card — positive findings and recommendations sit here, with a success-coloured left border.</div>
+    <div class="warning-card">Warning card — cautions and caveats sit here, with a warning-coloured left border.</div>
+
+    <div class="convo-card"><span class="badge-num">1</span><div><strong>First conversation starter.</strong> The circular index badge is <code>.badge-num</code>, never bare <code>.num</code>.</div></div>
+    <div class="convo-card"><span class="badge-num">2</span><div><strong>Second starter.</strong> Same badge, same size, held by a token.</div></div>
+
+    <div style="margin-top:16px;">
+      <div class="timeline-item"><strong>Assets defined</strong><br>primitives, spectrum, palettes</div>
+      <div class="timeline-item"><strong>Implementations built</strong><br>detailed, exec</div>
+      <div class="timeline-item"><strong>Schemes composed</strong><br>four presets</div>
+    </div>
+  </div>
+</div>
+
+<div id="page-actions" class="page">
+  <div class="container">
+    <h2>Actions &amp; status</h2>
+    <div class="response-card"><div><div class="prompt">If asked for an exec read</div>Select the Exec implementation — longform, paper, one accent, tabs-as-anchors.</div></div>
+    <div class="response-card"><div><div class="prompt">If asked for a working dashboard</div>Select Detailed — tabbed, spectrum coding, hover elevation.</div></div>
+
+    <table class="action-table" style="margin-top:16px;">
+      <thead><tr><th>Item</th><th>Owner</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Token layer</td><td>design-guide</td><td><span class="rag rag-green"><span class="rag-dot"></span>Done</span></td></tr>
+        <tr><td>Exec schemes</td><td>design-guide</td><td><span class="rag rag-green"><span class="rag-dot"></span>Done</span></td></tr>
+        <tr><td>Re-test mds-to-html</td><td>you</td><td><span class="rag rag-amber"><span class="rag-dot"></span>Pending</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+/* design-guide · assets/palette-quantium.css
+   Tier 2 — Quantium brand palette. Sets the accent + status colour roles that
+   components consume. Surface / ink / radius / shadow are set by the IMPLEMENTATION
+   (detailed.css or exec.css), so this file is register-neutral.
+   Design DNA: Q Blue accent against warm neutrals — clean, analytical, confident. */
+
+:root {
+  /* Brand hue */
+  --brand: #3f69ae;              /* Q Blue */
+  --brand-strong: #35598f;
+
+  /* Semantic accent roles */
+  --accent: var(--brand);
+  --accent-hover: var(--brand-strong);
+  --accent-tint: #e8f0f8;        /* light accent background */
+  --on-accent: #ffffff;
+  --link: var(--brand);
+  --focus-ring: rgba(63, 105, 174, 0.45);
+
+  /* Brand heading colour (used by Detailed; Exec uses --ink) */
+  --brand-heading: var(--q-black);
+
+  /* Status roles (shared RAG mapping) */
+  --info: #3a5a8a;    --info-bg: #e8f0f8;    --info-fg: #3a5a8a;
+  --success: #2a7a55; --success-bg: #e8f5f0; --success-fg: #2a6b55;
+  --warning: #8a6a2a; --warning-bg: #f5f0e0; --warning-fg: #6b5a2a;
+  --danger: #8a2a2a;  --danger-bg: #f5e8e8;  --danger-fg: #8a2a2a;
+
+  /* Table header (Quantium default: chrome bg, tertiary text; no row striping).
+     Exec overrides these. For data-heavy tables, swap --table-head-bg to var(--accent). */
+  --table-head-bg: var(--chrome);
+  --table-head-fg: var(--grey);
+  --table-row-alt: transparent;
+}

@@ -1,0 +1,89 @@
+/* design-guide · assets/primitives.css
+   Tier 1 — brand-neutral primitives. Raw scale values, never referenced directly
+   by components. Shared by every scheme (both brands, both implementations).
+   Inline this first in the <style> block, before spectrum / palette / implementation. */
+
+:root {
+  /* ── Font families ── */
+  --font-sans: 'Roboto', system-ui, -apple-system, sans-serif;
+  --font-display: 'Roboto', system-ui, -apple-system, sans-serif; /* Exec may override to 'Inter' */
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
+
+  /* ── Space scale (4px base) ── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;   /* card padding, item gaps */
+  --space-4: 16px;
+  --space-6: 24px;   /* section body padding */
+  --space-8: 32px;
+  --space-12: 48px;  /* container vertical padding */
+  --space-16: 64px;
+
+  /* ── Radius ── */
+  --radius-sharp: 3px;  /* Exec */
+  --radius-sm: 4px;     /* pills, tags, small elements */
+  --radius-md: 8px;     /* cards */
+  --radius-lg: 10px;    /* containers, sections (Detailed) */
+
+  /* ── Type scale (size) ── */
+  --text-h1: 32px;
+  --text-h2: 22px;
+  --text-title: 16px;   /* section + card titles — pick one, hold it */
+  --text-lead: 15px;    /* tagline / lead paragraph */
+  --text-body: 14px;    /* body content */
+  --text-small: 13px;   /* card description, table cells */
+  --text-label: 11px;   /* uppercase table headers, labels, meta */
+  --text-meta: 10px;    /* caption */
+  --text-pill: 10px;    /* tags */
+
+  /* ── Type: weight ── */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-display: 500; /* Exec overrides to 600/700 for editorial headings */
+
+  /* ── Type: line-height & tracking ── */
+  --lh-tight: 1.2;
+  --lh-body: 1.5;
+  --tracking-tight: -0.2px;  /* headings */
+  --tracking-label: 0.06em;  /* uppercase labels */
+
+  /* ── Elevation ── */
+  --elev-0: none;
+  --elev-card: 0 2px 8px rgba(0,0,0,0.04);
+  --elev-hover: 0 2px 12px rgba(0,0,0,0.04);
+  --elev-open: 0 4px 20px rgba(0,0,0,0.06);
+
+  /* ── Motion ── */
+  --motion-fast: 150ms;
+  --motion-standard: 250ms;
+  --motion-expand: 450ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Measure / layout ── */
+  --container: 1100px;        /* standard report width */
+  --container-wide: 1440px;   /* data-dense dashboards */
+  --measure-longform: 720px;  /* Exec reading width */
+
+  /* ── Neutral colour primitives (warm, shared across brands) ── */
+  --white: #ffffff;
+  --q-black: #000006;         /* near-black, never pure #000 */
+  --bg-cool: #f8f9fa;         /* Detailed page background */
+  --light-grey: #f2f2f2;
+  --chrome: #ece8e4;          /* warm inset / hover */
+  --warm-grey: #bcb5ac;       /* decorative bars, bullets */
+  --dark-warm-grey: #736e68;  /* secondary labels with warmth */
+  --border-grey: #c7c5c4;
+  --dark-grey: #4a4a4e;       /* strong body text */
+  --grey: #93908e;            /* tertiary labels, meta */
+
+  /* ── Exec paper & ink primitives (from /html-examples) ── */
+  --paper: #f7f4ef;           /* warm paper background */
+  --paper-2: #ede8e0;         /* paper inset */
+  --paper-white: #fafaf9;     /* near-white paper alt */
+  --paper-border: #d9d4cd;
+  --ink: #1a1a1a;             /* editorial near-black */
+  --ink-2: #3d3d3a;           /* editorial body */
+  --ink-3: #77736f;           /* editorial muted */
+  --sidebar: #1c1c1e;         /* optional dark sidebar */
+}

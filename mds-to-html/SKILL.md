@@ -27,8 +27,10 @@ Before building, resolve these five inputs. Infer them from the request where st
 | **Size ceiling** | Tab count or "N-page" cap, if any | The curate-vs-density tradeoff (see Content Fidelity) |
 | **Anonymisation** | Name people/orgs freely vs strip all names | Framing rules |
 | **Voice treatment** | Preserve source (default) / neutral edit / write in authored voice | Whether the optional `write-guide` slot is loaded (see Tone Gate) |
+| **Brand** | Quantium (Q Blue) / wiq (Berry) | Which `design-guide` palette |
+| **Format** | Detailed (dashboard, tabbed) / Exec (editorial, longform) | Which `design-guide` implementation + which JS behaviour |
 
-Default assumption when unstated: **shareable, fact-based, curated, preserve source voice.** These settings have caused the least rework. State your inferred intake in one line before building, so it can be corrected early rather than after the first version.
+Default assumption when unstated: **shareable, fact-based, curated, preserve source voice, Quantium + Detailed.** These settings have caused the least rework. Derive Format from audience/purpose — an exec/leadership/external POV read leans **Exec**; a working or data-dense briefing leans **Detailed**. State your inferred intake (including brand + format = the `design-guide` scheme) in one line before building, so it can be corrected early rather than after the first version.
 
 ## Content Fidelity: Lossless vs Curated (depends on audience)
 
@@ -54,19 +56,25 @@ This is the default for personal/working briefings with substantial prose. For t
 
 Inconsistent sizing across similar objects is the most common polish failure — two tables at different cell sizes, one card title at 14px and the next at 16px, a tagline larger on one tab than another. Pin the scale once and reuse it; never re-size an instance with an inline `style="font-size:…"`. If two things are the same kind of object, they share one class and render identically.
 
-Use q-html's defined scale — don't invent sizes. Hold these constant across every tab:
+Use `design-guide`'s tokens — don't invent sizes. The type scale, spacing, radius,
+elevation and motion are all CSS variables (`--text-*`, `--space-*`, `--radius-*`), so
+consistency is enforced by *referencing the token*, never by re-typing a value. Hold
+these constant across every tab (all sourced from `design-guide/assets/primitives.css`):
 
-| Object | Size / weight |
-|--------|---------------|
-| Page `h1` | 32px / 500 |
-| Section `h2` | 22px / 500 |
-| Section + card titles | 15–16px / 500 (pick one, hold it) |
-| Tagline / lead paragraph | 15px / 300 |
-| Body, card description, table cells | 13–14px (pick one body size, hold it) |
-| Table headers, labels, meta | 10–12px / 500, uppercase |
-| Tag pills | 10px / 500 |
+| Object | Token |
+|--------|-------|
+| Page `h1` | `--text-h1` (32/500) |
+| Section `h2` | `--text-h2` (22/500) |
+| Section + card titles | `--text-title` (16/500) — pick one, hold it |
+| Tagline / lead paragraph | `--text-lead` (15/300) |
+| Body, card description, table cells | `--text-small` (13/300) or `--text-body` (14/400) — pick one, hold it |
+| Table headers, labels, meta | `--text-label` (11/500, uppercase) |
+| Tag pills | `--text-pill` (10/500) |
 
-Same rule for spacing: same component → same padding (cards 12–14px, section bodies 24px, table cells ~12px×16px). Don't let one card breathe while its neighbour is cramped. Before delivery, grep the output for inline `font-size`/`padding` in `style=""` — any hit is a consistency leak; move it into the shared class.
+Same rule for spacing: same component → same `--space-*` token (cards `--space-3`, section
+bodies `--space-6`, container padding `--space-12`). Don't let one card breathe while its
+neighbour is cramped. Before delivery, grep the output for inline `font-size`/`padding`/hex
+in `style=""` — any hit is a consistency leak; move it onto the shared class/token.
 
 ## Critical Rule: Confidentiality of Meeting Transcripts
 
@@ -115,9 +123,28 @@ Run the De-Slop Pass on the source markdown before converting. Skill-specific ca
 
 ## Process
 
-### Step 1: Read the q-html skill
+### Step 1: Read the design-guide skill and select a scheme
 
-Load the `/q-html` skill first for the full Quantium design system (colour palette, typography, component patterns). All output must conform to that system.
+Load the `design-guide` skill first (`../design-guide/SKILL.md`) for the full design
+system — token tiers, the four schemes, component vocabulary, and shared rules. All
+output must conform to it.
+
+From the intake, resolve the **scheme** = brand × format:
+
+- **Brand** → palette: Quantium (`palette-quantium.css`) or wiq (`palette-wiq.css`).
+- **Format** → implementation: Detailed (`detailed.css`) or Exec (`exec.css`).
+
+Then inline the recipe for that scheme (see `design-guide/presets/README.md` for the
+exact file order and the matching JS behaviour):
+
+- **Detailed** — `primitives + spectrum + palette-{brand} + detailed.css`, with the
+  `showPage` JS (one page visible at a time).
+- **Exec** — `primitives + spectrum + palette-{brand} + exec.css`, with the
+  tabs-as-anchors JS (all pages stacked; scroll down *or* click a tab to jump;
+  scroll-spy highlights the active tab). Load **Inter** as well as Roboto.
+
+The HTML class vocabulary is identical across schemes — build once, the scheme is a CSS +
+JS-behaviour choice, not a markup change.
 
 ### Step 2: Read all source files
 
@@ -147,12 +174,12 @@ Use the richest component that fits the content. Do not default everything to pl
 | Blockquotes | `.quote` block (blue left border, italic) |
 | Warning/caution content | `.warning-card` (orange border, amber background) |
 | Positive findings / recommendations | `.tip-card` (green border, mint background) |
-| Numbered action items / conversation starters | `.convo-card` with `.num` circle badge |
+| Numbered action items / conversation starters | `.convo-card` with `.badge-num` circle badge (never bare `.num`) |
 | Status items (done/pending/check) | `.action-table` with coloured status spans |
 | Data tables | `.doc-table` (full-width, styled headers) |
 | Tags / labels / categories | `.tag` pills (`.tag-blue`, `.tag-green`, `.tag-orange`, `.tag-violet`, `.tag-coral`, `.tag-cyan`) |
 | Timeline / chronological events | `.timeline-item` with dot indicators |
-| Items with severity/priority (risks, blind spots) | Custom card with `.num` badge and coloured left border |
+| Items with severity/priority (risks, blind spots) | Custom card with `.badge-num` badge and coloured left border |
 | "If X, then Y" response pairs | `.response-card` with `.prompt` header |
 
 ### Step 5: Build the HTML
@@ -163,8 +190,8 @@ Structure:
 <!DOCTYPE html>
 <html>
 <head>
-  - Meta, title, Google Fonts link (Roboto 300;400;500)
-  - Full <style> block with all component CSS
+  - Meta, title, Google Fonts link (Roboto 300;400;500 — plus Inter 300;400;500;600;700 for Exec)
+  - Full <style> block = the design-guide scheme recipe inlined (primitives + spectrum + palette + implementation)
 </head>
 <body>
   - <nav class="top-nav"> with title + tab buttons + date
@@ -179,7 +206,7 @@ Structure:
 
 These are non-negotiable:
 
-1. **Load `/q-html` first** and follow its colour system, typography, and component patterns exactly
+1. **Load `design-guide` first** and follow its tokens, colour system, typography, and component patterns exactly for the selected scheme
 2. **No emoji or Unicode decorative characters** — use CSS dots, colour bars, SVG chevrons
 3. **Content fidelity per intake** — for personal/working briefings, no information loss (every fact, quote, table row, and bullet appears; 12 source bullets → 12 HTML bullets; 27 rows → 27 rows). For shareable/exec artefacts, curate to the audience and honour the size ceiling (see Content Fidelity above). Never fabricate to fill space.
 4. **Vary the components** — do not make every section an identical accordion. Mix tables, cards, quotes, timelines, tip/warning cards. Each tab should feel distinct.
@@ -222,7 +249,14 @@ Recurring bug: tile title and subhead render on one line (`Today's process (as-i
 
 ## Expand/Collapse JavaScript
 
-Always include this JS at the bottom:
+Include the JS behaviour matching the selected scheme (both are in
+`design-guide/presets/README.md`). **Detailed** uses `showPage` (one page visible at a
+time) + `toggleMaster`, shown below. **Exec** instead uses the tabs-as-anchors behaviour
+(all pages stacked; `showPage` smooth-scrolls to a section; an IntersectionObserver
+scroll-spies the active tab) plus the same `toggleMaster` — copy that variant from the
+presets README.
+
+For Detailed, always include this JS at the bottom:
 
 ```javascript
 function showPage(page, btn) {

@@ -6,7 +6,7 @@ argument-hint: "<meeting folder path> [supplementary doc links]"
 
 # Distil Workshop
 
-Turn a workshop or strategy day's raw materials into a set of topic markdown files plus a consolidated, tabbed HTML debrief. The skill orchestrates; the heavy lifting (confidentiality, tone, components) lives in `mds-to-html`, `remove-ai-tells`, `zk-write-guide` and `q-html` — defer to them, do not duplicate their rules here.
+Turn a workshop or strategy day's raw materials into a set of topic markdown files plus a consolidated, tabbed HTML debrief. The skill orchestrates; the heavy lifting (confidentiality, tone, components) lives in `mds-to-html`, `remove-ai-tells`, `zk-write-guide` and `design-guide` (the token + component design system; `q-html`/`wiq-html` are deprecated pointers to it) — defer to them, do not duplicate their rules here.
 
 ## Principle: ask before churning
 
