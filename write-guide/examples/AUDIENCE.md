@@ -7,13 +7,14 @@ HOW WE POPULATED THIS (for an Agent calibrating the real AUDIENCE.md).
 - Partner/client terminology: confirm the author's default term (and when the other is required) with them.
 - The third-party-naming, transcript-sensitivity, and no-fabrication rules below are safe defaults — keep
   them as-is unless the author's context demands otherwise; they protect people, not voice.
-- Save to ../../write-guide/references/AUDIENCE.md (gitignored — never commit).
+- Save to ../references/AUDIENCE.md — i.e. write-guide/references/AUDIENCE.md (gitignored — never commit).
 -->
 
-Copy this file into your active `write-guide/references/AUDIENCE.md` and adapt.
-Load it when the audience affects framing or detail, the output is external or
-shareable, third-party organisations are named, or source material includes
-meetings or transcripts.
+**Where this lives once populated:** `write-guide/references/AUDIENCE.md`.
+
+Copy this file to `write-guide/references/AUDIENCE.md` and adapt. Load it when the audience affects
+framing or detail, the output is external or shareable, third-party organisations are named, or source
+material includes meetings or transcripts.
 
 ## Audience calibration
 

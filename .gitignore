@@ -11,9 +11,11 @@ Thumbs.db
 # Node
 node_modules/
 
-# Personal, interchangeable voice profile — swap in your own; never commit.
-# The committed template lives in write-guide.example/
-/write-guide/
+# Personal, interchangeable voice profile — populated files live locally only.
+# The committed templates live in write-guide/examples/; the real profile
+# (SKILL.md at the root, AUDIENCE.md in references/) is never committed.
+/write-guide/SKILL.md
+/write-guide/references/
 
 # Personal Slack conversation map — names and channel IDs; never commit.
 # The committed template lives at slack/references/metadata_map.example.json

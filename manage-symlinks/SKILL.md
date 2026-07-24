@@ -13,16 +13,19 @@ symlink back to this repo. This skill keeps those symlinks in sync.
 `~/.agents/skills`, `~/.codex/skills`, or any other search path — those are
 managed elsewhere (e.g. the personal `zk-skills` repo).
 
-One skill per top-level directory that contains a `SKILL.md`. Templates and
-scaffolds (e.g. `write-guide.example`) are excluded — see `EXCLUDE` in the
-script.
+One skill per top-level directory that contains a `SKILL.md`. Templates live
+*inside* a skill's own `examples/` folder (e.g. `write-guide/examples/`), never
+as separate top-level directories, so there is nothing to exclude. An
+unpopulated `write-guide/` (only `examples/`, no root `SKILL.md`) is skipped
+automatically until you populate it.
 
 ## When to use
 
 - After adding a new skill, renaming one, or removing one from this repo.
 - Setting up `work-skills` on a fresh container or machine.
-- After the personal, gitignored `write-guide/` is created from
-  `write-guide.example/` (so it gets linked too).
+- After the personal, gitignored `write-guide/SKILL.md` is created from
+  `write-guide/examples/` (so `write-guide/` starts resolving as a skill and
+  gets linked too).
 
 ## Run it
 

@@ -1,13 +1,13 @@
 ---
 name: write-guide
-description: TEMPLATE — draft or rewrite professional communications in the author's authentic voice. Copy this directory to `write-guide/` and fill in your own profile. Other skills (e.g. mds-to-html) load whatever `write-guide` provides from the generic slot.
+description: TEMPLATE — draft or rewrite professional communications in the author's authentic voice. Once populated, this lives at write-guide/SKILL.md. Other skills (e.g. mds-to-html) load whatever `write-guide` provides from the generic slot.
 ---
 
 # Write As <You>
 
 <!--
-HOW WE POPULATED THIS (for an Agent calibrating the real write-guide/ profile).
-This records the method used to fill the committed real profile so it can be rebuilt for a new author.
+HOW WE POPULATED THIS (for an Agent calibrating the real write-guide profile).
+This records the method used to fill the real profile so it can be rebuilt for a new author.
 
 1. Assemble a corpus of the author's OWN writing — prefer things they wrote unedited and sent themselves:
    sent Gmail/Outlook (gws/msgraph), their Slack messages ("from:me"), authored docs and PR descriptions.
@@ -19,15 +19,17 @@ This records the method used to fill the committed real profile so it can be reb
    they consistently avoid.
 4. Where the corpus is thin or a signal is ambiguous, ASK the author rather than guessing — voice errors
    are immediately obvious to them and cheap to correct up front.
-5. Replace every <…> placeholder, delete this comment and the "activate it" bullet block below, keep the
-   headings (downstream skills expect them), and save to ../write-guide/ (gitignored — never commit).
+5. Replace every <…> placeholder, delete this comment and the "activate it" block below, keep the headings
+   (downstream skills expect them), and save to ../SKILL.md — i.e. write-guide/SKILL.md, one level up from
+   this examples/ folder (gitignored — never commit).
 -->
 
 This is the **template** for the interchangeable personal voice profile.
 
-- The real, personal version lives in a sibling `write-guide/` directory, which is **gitignored** so voice data and audience rules never ship in the repo.
-- To activate it: `cp -r write-guide.example write-guide`, then replace every `<…>` placeholder below with your own calibration and delete this notice block.
-- Skills that compose voice (currently `mds-to-html`) look for `../write-guide/SKILL.md`. If it exists, they load it; if not, they skip voice treatment and rely on `remove-ai-tells` alone. The name `write-guide` is the whole contract — swap the contents, keep the name.
+- **Where this lives once populated:** `write-guide/SKILL.md` — one level up, in the root of this skill folder. (The companion `examples/AUDIENCE.md` goes to `write-guide/references/AUDIENCE.md`.)
+- The real, personal versions are **gitignored** so voice data and audience rules never ship in the repo; only this `examples/` folder is committed.
+- To activate, from the `write-guide/` folder: `cp examples/SKILL.md SKILL.md` and `cp examples/AUDIENCE.md references/AUDIENCE.md`, then replace every `<…>` placeholder with your own calibration and delete this notice block.
+- Skills that compose voice (currently `mds-to-html`) look for `write-guide/SKILL.md`. If it exists, they load it; if not, they skip voice treatment and rely on `remove-ai-tells` alone. The name `write-guide` is the whole contract — swap the contents, keep the name.
 
 Fill in the sections below. Keep the headings; they are what downstream skills expect.
 

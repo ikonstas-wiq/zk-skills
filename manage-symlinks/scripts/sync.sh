@@ -26,8 +26,10 @@ REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 TARGET="${HOME}/.claude/skills"   # fixed: Claude Code skills path only
 DRY_RUN=0; FORCE=0; PRUNE=0
 
-# Directories in the repo that are NOT active skills (templates, scaffolds).
-EXCLUDE=( "write-guide.example" )
+# Top-level directories that are NOT active skills. Templates now live inside a
+# skill's own examples/ folder (not as top-level dirs), so this is empty; kept
+# as a hook for any future scaffold that does sit at the top level.
+EXCLUDE=( )
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -39,7 +41,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-is_excluded() { local n="$1"; for e in "${EXCLUDE[@]}"; do [ "$n" = "$e" ] && return 0; done; return 1; }
+is_excluded() { local n="$1"; [ ${#EXCLUDE[@]} -eq 0 ] && return 1; for e in "${EXCLUDE[@]}"; do [ "$n" = "$e" ] && return 0; done; return 1; }
 run() { if [ "$DRY_RUN" = 1 ]; then echo "  DRY: $*"; else eval "$@"; fi; }
 
 mkdir -p "$TARGET"
